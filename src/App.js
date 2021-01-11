@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// main function
+ function App(){
+    
+  const obj = '';
+  const temp = [
+    {
+      id : 1,
+    },
+    {
+      id : 1,
+    }
+  ]
+   // react-hooks
+   const [state,setState] = useState(obj);
+  
+  // sending api calls through ajax and xml.
+  function postData(){
+   
+
+    var xhr = new XMLHttpRequest();
+    
+    // open function creates a request;
+    xhr.open('GET','https://jsonplaceholder.typicode.com/posts',true);
+
+    xhr.onload = function(){
+      if(xhr.status === 200){
+        console.log(JSON.parse(xhr.responseText));
+        setState(xhr.responseText);
+      }
+    }
+    xhr.send();
+  }
+    return(
+      <>
+   <button onClick = {postData}>Click me</button>
+    <p>{state}</p>
+    <p>{temp.map((key) => key.id)}</p>;
+    <p>{this}</p>
+    
+      </>
+    )
+    
+    
+
+ }
 
 export default App;
